@@ -41,3 +41,13 @@ Route::get('/datadiri', function () {
     return view('biodata_page',compact('nama','jenis_kelamin','pendidikan_terakhir','pekerjaan'));
 });
 
+//parameter
+Route::get('/xample/{nama}/{kelas}/{jurusan}', function($nama,$kelas,$jurusan) {
+    $nama2 = $nama;
+    $kelas2 = $kelas;
+    $jurusan2 = $jurusan;
+    return view('xample',compact('nama2','kelas2','jurusan2'));
+});
+
+
+
