@@ -18,15 +18,26 @@ Route::get('/', function () {
 });
 
 //route basic
-Route :: get('/About',function () {
+Route :: get('/samarinda',function () {
     return '<h1>HAALOOO</h1>'
     . 'Selamat Datang Kawan Teman<br>'
     . 'Orang hitam bilang ini settingan';
 
  });
 
-Route :: get('Sato',function (){
-    $raja = "The Greatest Farel";
-    $hewan = ["Monkey","FireFly","Niger","Butterfly","Crocodile"];
-    return view('Animals_page', compact('raja','hewan'));
+Route::get('/HAL2', function () {
+    return view('animals2');
 });
+
+Route::get('/HAL3', function () {
+    return view('tokobuah_page');
+});
+
+Route::get('/datadiri', function () {
+    $nama = "Abigail";
+    $jenis_kelamin = "Laki-Laki";
+    $pendidikan_terakhir = "SMK";
+    $pekerjaan = "i am a student bro";
+    return view('biodata_page',compact('nama','jenis_kelamin','pendidikan_terakhir','pekerjaan'));
+});
+
