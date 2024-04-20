@@ -42,7 +42,7 @@ Route::get('/datadiri', function () {
 });
 
 //parameter
-Route::get('/xample/{nama}/{kelas}/{jurusan}', function($nama,$kelas,$jurusan) {
+Route::get('/xample/{nama}/{kelas}/{jurusan}', function(Request $request,$nama,$kelas,$jurusan) {
     $nama2 = $nama;
     $kelas2 = $kelas;
     $jurusan2 = $jurusan;
