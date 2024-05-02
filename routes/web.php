@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\AlbumMusic;
+use App\Models\Sekolah;
+use App\Models\Siswa;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,7 +43,6 @@ Route::get('/datadiri', function () {
     return view('biodata_page',compact('nama','jenis_kelamin','pendidikan_terakhir','pekerjaan'));
 });
 
-//parameter
 Route::get('/xample/{nama}/{kelas}/{jurusan}', function(Request $request,$nama,$kelas,$jurusan) {
     $nama2 = $nama;
     $kelas2 = $kelas;
@@ -49,5 +50,23 @@ Route::get('/xample/{nama}/{kelas}/{jurusan}', function(Request $request,$nama,$
     return view('xample',compact('nama2','kelas2','jurusan2'));
 });
 
+//parameter
+Route::get('/halo/{nama}/{kelas}', function (Request $request, $nama, $kelas) {
+    $nama2 = $nama;
+    $kelas2 = $kelas;
+    return view('halo_page',compact('nama2','kelas2'));
+    });
 
 
+Route::get('/sekolah', function () {
+    return Sekolah::all();
+});
+
+Route::get('/siswa', function () {
+    return view('Siswa');
+});                                                                                                                                                                                                                         
+
+Route::get('/musik', function () {
+    //return view('AlbumMusic');
+        return AlbumMusic::all();
+}); 
