@@ -1,9 +1,13 @@
 <?php
 
 use App\Models\AlbumMusic;
+use App\Models\DetailFilem;
 use App\Models\Sekolah;
 use App\Models\Siswa;
+use App\Models\film;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MyController;
+use App\Http\Controllers\MovieController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,9 +68,27 @@ Route::get('/sekolah', function () {
 
 Route::get('/siswa', function () {
     return view('Siswa');
-});                                                                                                                                                                                                                         
+});
 
 Route::get('/musik', function () {
     //return view('AlbumMusic');
         return AlbumMusic::all();
-}); 
+});
+
+Route::get('/film', function () {
+    //return view('AlbumMusic');
+        return view("film");
+});
+Route::get('film/{id}', function (int $id) {
+    return view('detail-film',['film'=>Film::find($id)]);
+});
+
+Route::get('/media', function () {
+    return view('Media');
+});
+
+Route::get('Perkenalan',[MyController::class, 'introduce']);
+Route::get('Animals', [MyController::class, 'Animals']);
+
+Route::get('Movie', [MovieController::class, 'getMovie']);
+Route::get('Movie/{id}', [MovieController::class, 'getMovieById']);

@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('album_music', function (Blueprint $table) {
+        Schema::create('media', function (Blueprint $table) {
             $table->id();
-            $table->string('Judul');
-            $table->string('Tahun');
-            $table->string('Cover_album');
+            $table->foreignId('film_id')->constrained()->onDelete('cascade');
+            $table->boolean('media_type')->default(0);
+            $table->string('media_title')->default('-');
+            $table->string('url_media')->nullable();
             $table->timestamps();
         });
     }
-      
 
     /**
      * Reverse the migrations.
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('album_music');
+        Schema::dropIfExists('media');
     }
 };

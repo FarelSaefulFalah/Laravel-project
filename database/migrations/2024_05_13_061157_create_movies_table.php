@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use App\Models\Movie;
 return new class extends Migration
 {
     /**
@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('album_music', function (Blueprint $table) {
+        Schema::create('movies', function (Blueprint $table) {
             $table->id();
-            $table->string('Judul');
-            $table->string('Tahun');
-            $table->string('Cover_album');
+            $table->string('title')->unique();
+            $table->text('description');
+            $table->string('cover_url');
+            $table->string('trailer_url');
+            $table->integer('viewer');
             $table->timestamps();
         });
     }
-      
 
     /**
      * Reverse the migrations.
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('album_music');
+        Schema::dropIfExists('movies');
     }
 };

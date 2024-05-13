@@ -23,7 +23,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SekolahSeeder::class,
             SiswaSeeder::class,
-            AlbumMusicSeeder::class
+            AlbumMusicSeeder::class,
+            FilmSeeder::class,
+            DetailFilemSeeder::class,
+            MediaSeeder::class
         ]);
     }
 }

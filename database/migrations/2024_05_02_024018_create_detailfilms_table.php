@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('album_music', function (Blueprint $table) {
+        Schema::create('detailfilms', function (Blueprint $table) {
             $table->id();
-            $table->string('Judul');
-            $table->string('Tahun');
-            $table->string('Cover_album');
+            $table->unsignedBigInteger('film_id')->unique();
+            $table->string('Code_film')->unique();
+            $table->string('url_indb')->unique();
             $table->timestamps();
         });
     }
-      
 
     /**
      * Reverse the migrations.
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('album_music');
+        Schema::dropIfExists('detailfilms');
     }
 };
