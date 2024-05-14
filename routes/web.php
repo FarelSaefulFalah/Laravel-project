@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtikelController;
 use App\Models\AlbumMusic;
 use App\Models\DetailFilem;
 use App\Models\Sekolah;
@@ -92,3 +93,7 @@ Route::get('Animals', [MyController::class, 'Animals']);
 
 Route::get('Movie', [MovieController::class, 'getMovie']);
 Route::get('Movie/{id}', [MovieController::class, 'getMovieById']);
+
+Route::get('artikel', [ArtikelController::class, 'getArtikel']);
+Route::get('/artikel/id/{id}', [ArtikelController::class, 'getArtikelById']);
+Route::get('/artikel/kategori/{kategori}', [ArtikelController::class, 'getArtikelByKategori']);
