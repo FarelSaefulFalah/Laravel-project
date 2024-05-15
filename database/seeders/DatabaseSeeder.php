@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             FilmSeeder::class,
             DetailFilemSeeder::class,
             MediaSeeder::class
+            
         ]);
     }
 }
