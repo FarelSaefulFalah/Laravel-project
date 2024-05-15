@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
+// use App\Http\Requests\StorePenulisRequest;
+// use App\Http\Requests\UpdatePenulisRequest;
 use App\Models\Penulis;
-use App\Http\Requests\StorePenulisRequest;
-use App\Http\Requests\UpdatePenulisRequest;
 
 class PenulisController extends Controller
 {
@@ -35,10 +36,11 @@ class PenulisController extends Controller
      * @param  \App\Http\Requests\StorePenulisRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePenulisRequest $request)
+    // public function store(StorePenulisRequest $request)
+    public function store(Request $request)
     {
-         $validated = $request->validate([
-            'nama_penulis' => 'required|max:255',
+        $validated = $request->validate([
+            'nama_penulis' => 'required|max:235',
             'bio' => 'required',
         ]);
 
@@ -47,8 +49,7 @@ class PenulisController extends Controller
         $penulis->bio = $request->bio;
         $penulis->save();
 
-        return redirect()->route('penulis.index')
-            ->with('success','data berhasil ditambahkan');
+        return redirect()->route('penulis.index')->with('success', 'data berhasil ditambahkan');
     }
 
     /**
@@ -57,9 +58,11 @@ class PenulisController extends Controller
      * @param  \App\Models\Penulis  $penulis
      * @return \Illuminate\Http\Response
      */
-    public function show(Penulis $penulis)
+    // public function show(Penulis $penulis)
+    public function show($id)
     {
-       return view('penulis.show', compact('penulis'));
+        $penulis = Penulis::findOrFail($id);
+        return view('penulis.show', compact('penulis'));
     }
 
     /**
@@ -68,8 +71,10 @@ class PenulisController extends Controller
      * @param  \App\Models\Penulis  $penulis
      * @return \Illuminate\Http\Response
      */
-    public function edit(Penulis $penulis)
+    // public function edit(Penulis $penulis)
+    public function edit($id)
     {
+        $penulis = Penulis::findOrFail($id);
         return view('penulis.edit', compact('penulis'));
     }
 
@@ -80,19 +85,21 @@ class PenulisController extends Controller
      * @param  \App\Models\Penulis  $penulis
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePenulisRequest $request, Penulis $penulis)
+    // public function update(UpdatePenulisRequest $request, Penulis $penulis)
+    public function update(Request $request, $id)
     {
-           $validated = $request->validate([
-            'nama_penulis' => 'required',
+        $validated = $request->validate([
+            'nama_penulis' => 'required|max:235',
             'bio' => 'required',
         ]);
-        $penulis = findOrfail($penulis->id);
+
+        $penulis = Penulis::findOrFail($id);
         $penulis->nama_penulis = $request->nama_penulis;
         $penulis->bio = $request->bio;
         $penulis->save();
 
-        return redirect()->route('penulis.index')
-            ->with('success','data berhasil ditambahkan');
+        return redirect()->route('penulis.index')->with('success', 'data berhasil diubah');
+
     }
 
     /**
@@ -101,12 +108,12 @@ class PenulisController extends Controller
      * @param  \App\Models\Penulis  $penulis
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Penulis $penulis)
+    // public function destroy(Penulis $penulis)
+    public function destroy($id)
     {
-        $penulis = findOrfail($penulis->id);
+        $penulis = Penulis::findOrFail($id);
         $penulis->delete();
 
-        return redirect()->route('penulis.index')
-            ->with('success', 'data berhasil di hapus');
+        return redirect()->route('penulis.index')->with('success', 'data berhasil dihapus!');
     }
 }
