@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('jml_halaman');
             $table->string('cover');
             $table->string('tgl_terbit');
-            $table->foreignId('id_penerbit')->onDelete('cascade');
+            $table->foreignId('id_penulis')->onDelete('cascade');
             $table->timestamps();
         });
         Schema::create('genre_buku', function (Blueprint $table) {

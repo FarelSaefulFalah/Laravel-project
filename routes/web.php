@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\PenulisController;
 use App\Models\AlbumMusic;
 use App\Models\DetailFilem;
@@ -10,6 +11,8 @@ use App\Models\film;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\BukuController;
+use App\Models\Buku;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -105,3 +108,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //
 
 Route::resource('penulis',PenulisController::class);
+
+Route::resource('genre',GenreController::class);
+
+Route::resource('buku', BukuController::class);
